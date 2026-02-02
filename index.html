@@ -21,9 +21,9 @@
 .heart {
   position: fixed;
   bottom: -20px;
-  font-size: 18px;
+  font-size: 32px;
   animation: floatUp 6s linear infinite;
-  opacity: 0.8;
+  opacity: 0.85;
   pointer-events: none;
 }
 
@@ -120,6 +120,20 @@ button {
   animation: shake 0.5s infinite;
 }
 
+.love-text {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 18px;
+  color: #ff2f92;
+  animation: pulseGlow 1.5s infinite;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(1); text-shadow: 0 0 5px #ff9acb; }
+  50% { transform: scale(1.1); text-shadow: 0 0 15px #ff4d88; }
+  100% { transform: scale(1); text-shadow: 0 0 5px #ff9acb; }
+}
+
 @keyframes shake {
   0% { transform: translate(0, 0); }
   25% { transform: translate(-2px, 2px); }
@@ -143,7 +157,7 @@ button {
 
 <div class="success" id="successMsg">
   YAYYYY BABYYY 💖🐾<br />
-  <span style="font-size:18px;">I LOVEE YOUU STUTIIII 💕</span>
+  <span class="love-text">I LOVEE YOUU STUTIIII 💕</span>
 </div>
 
   </div>  <script>
@@ -184,23 +198,41 @@ button {
       successMsg.style.display = 'block';
       yesBtn.style.display = 'none';
       noBtn.style.display = 'none';
-      teaseText.textContent = "I LOVEE YOUU STUTIIII 💕";
+      teaseText.textContent = "";
       launchConfetti();
+      flashScreen();
     });
 
     // Create floating hearts
     function createHeart() {
       const heart = document.createElement('div');
       heart.className = 'heart';
-      heart.textContent = '💖';
+      heart.textContent = Math.random() > 0.5 ? '💖' : '💕';
       heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (24 + Math.random() * 24) + 'px';
       heart.style.animationDuration = (4 + Math.random() * 3) + 's';
       document.body.appendChild(heart);
 
       setTimeout(() => heart.remove(), 7000);
     }
 
-    setInterval(createHeart, 500);
+    setInterval(createHeart, 450);
+
+    // Screen flash
+    function flashScreen() {
+      const flash = document.createElement('div');
+      flash.style.position = 'fixed';
+      flash.style.top = 0;
+      flash.style.left = 0;
+      flash.style.width = '100vw';
+      flash.style.height = '100vh';
+      flash.style.background = 'rgba(255, 182, 213, 0.4)';
+      flash.style.zIndex = 9998;
+      flash.style.pointerEvents = 'none';
+      document.body.appendChild(flash);
+
+      setTimeout(() => flash.remove(), 300);
+    }
 
     // Confetti explosion
     function launchConfetti() {
@@ -230,5 +262,6 @@ button {
     }
   </script></body>
 </html>
-  
-      
+
+
+     
