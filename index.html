@@ -1,283 +1,213 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Will You Be My Valentine?</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Comic Sans MS', 'Poppins', cursive, sans-serif;
-    }body {
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine? 💕</title>
+
+<style>
+body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, #ffd6e8, #ffeef5);
+  background: linear-gradient(180deg, #ffd6e8, #ffeef6);
+  font-family: 'Comic Sans MS', cursive;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Floating hearts */
-.heart {
+#flash {
   position: fixed;
-  bottom: -20px;
-  font-size: 32px;
-  animation: floatUp 6s linear infinite;
-  opacity: 0.85;
+  inset: 0;
+  background: pink;
+  opacity: 0;
   pointer-events: none;
-}
-
-@keyframes floatUp {
-  0% { transform: translateY(0) scale(0.8); opacity: 0; }
-  10% { opacity: 0.9; }
-  100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
-}
-
-.card {
-  background: white;
-  padding: 30px 25px 35px;
-  border-radius: 24px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  width: 330px;
-  position: relative;
-  z-index: 2;
-}
-
-.dog {
-  width: 140px;
-  height: 140px;
-  margin: 0 auto 10px;
-  animation: bounce 2s infinite;
-}
-
-.dog img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  transition: opacity 0.4s ease;
+  z-index: 999;
 }
 
 h1 {
-  font-size: 22px;
   color: #ff4d88;
-  margin: 10px 0 10px;
+  margin: 10px;
+  text-align: center;
 }
 
-.tease {
-  font-size: 14px;
-  color: #ff7aa8;
-  min-height: 18px;
-  margin-bottom: 15px;
+#dog {
+  width: 160px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .buttons {
+  margin-top: 25px;
   position: relative;
-  height: 120px;
+  width: 100%;
+  height: 200px;
 }
 
 button {
+  padding: 14px 26px;
+  font-size: 18px;
   border: none;
-  padding: 12px 20px;
-  font-size: 16px;
   border-radius: 999px;
   cursor: pointer;
-  transition: transform 0.2s ease;
-  position: absolute;
 }
 
-#yesBtn {
+#yes {
   background: #ff4d88;
   color: white;
-  left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%);
-  z-index: 2;
+  position: relative;
+  z-index: 5;
 }
 
-#yesBtn:hover {
-  transform: scale(1.1);
+#no {
+  background: #999;
+  color: white;
+  position: absolute;
+  left: 60%;
+  top: 40%;
 }
 
-#noBtn {
-  background: #eee;
-  color: #555;
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 9999;
-}
-
-
-
-.success {
-  font-size: 20px;
-  color: #ff4d88;
+#message {
+  font-size: 28px;
+  color: #ff1f6b;
   margin-top: 20px;
   display: none;
-  text-align: center;
-  animation: shake 0.5s infinite;
 }
 
-.final-text { text-align: center; }
-
-.yay { font-size: 26px; color: #ff4d88; animation: shake 0.5s infinite; }
-
-.love { margin-top: 10px; font-size: 20px; color: #ff2f92; animation: pulseGlow 1.5s infinite; }
-
-.love-text {
-  display: inline-block;
-  margin-top: 8px;
-  font-size: 18px;
-  color: #ff2f92;
-  animation: pulseGlow 1.5s infinite;
-}
-
-@keyframes pulseGlow {
-  0% { transform: scale(1); text-shadow: 0 0 5px #ff9acb; }
-  50% { transform: scale(1.1); text-shadow: 0 0 15px #ff4d88; }
-  100% { transform: scale(1); text-shadow: 0 0 5px #ff9acb; }
+.shake {
+  animation: shake 0.4s infinite;
 }
 
 @keyframes shake {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(-2px, 2px); }
-  50% { transform: translate(2px, -2px); }
-  75% { transform: translate(-2px, -2px); }
-  100% { transform: translate(0, 0); }
+  0% { transform: translate(0); }
+  25% { transform: translate(5px, -5px); }
+  50% { transform: translate(-5px, 5px); }
+  75% { transform: translate(5px, 5px); }
+  100% { transform: translate(0); }
 }
 
-  </style>
+.explode {
+  animation: explode 0.6s ease-out forwards;
+}
+
+@keyframes explode {
+  0% { transform: scale(1); }
+  60% { transform: scale(1.6); }
+  100% { transform: scale(1); }
+}
+
+#bottom {
+  position: absolute;
+  bottom: 20px;
+  font-size: 20px;
+  color: #ff2f7a;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px #ff9cc7; }
+  to { text-shadow: 0 0 20px #ff4d88; }
+}
+
+.heart {
+  position: absolute;
+  font-size: 18px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
 </head>
-<body>  <div class="card">
-    <div class="dog">
-      <div style="font-size:90px;">🐶</div>
-    </div>
-    <h1>Will you be my Valentine? 💕</h1>
-    <div class="tease" id="teaseText"></div><div class="buttons">
-  <button id="yesBtn">Yes 💖</button>
+
+<body>
+
+<div id="flash"></div>
+
+<img id="dog" src="https://images.unsplash.com/photo-1601758123927-1960c35f5f44?auto=format&fit=crop&w=500&q=80">
+
+<h1>Will you be my Valentine? 💕</h1>
+
+<div class="buttons">
+  <button id="yes">YES 💖</button>
+  <button id="no">NO 😤</button>
 </div>
 
-<button id="noBtn">No 🙈</button>
+<div id="message">YAYYYY BABYY 💥<br>I LOVEE YOUU STUTIIII 💖</div>
 
-<div class="success" id="successMsg">
+<div id="bottom">💗 made with too much love 💗</div>
 
-YAYYYY BABYYY 💖🐾<br /> <span class="love-text">I LOVEE YOUU STUTIIII 💕</span>
+<script>
+let noCount = 0;
 
-</div>
-      <div class="love">I LOVEE YOUU STUTIIII 💕</div>
-    </div>
-  </div>
-</div>
-    </div>
-  </div>  <script>
-    const noBtn = document.getElementById('noBtn');
-    const yesBtn = document.getElementById('yesBtn');
-    const successMsg = document.getElementById('successMsg');
-    const teaseText = document.getElementById('teaseText');
+// tiny cute beep sound
+function beep(freq = 600) {
+  const ctx = new AudioContext();
+  const osc = ctx.createOscillator();
+  osc.type = "sine";
+  osc.frequency.value = freq;
+  osc.connect(ctx.destination);
+  osc.start();
+  osc.stop(ctx.currentTime + 0.08);
+}
 
-    let dodgeCount = 0;
+document.getElementById("no").addEventListener("click", () => {
+  noCount++;
+  beep(300);
 
-    const teases = [
-      "Hehe… nice try 😜",
-      "Nope nope nope 🐾",
-      "Why you running from love? 💕",
-      "The dog believes in you 🥺",
-      "At this point just say yes 😌"
-    ];
+  const no = document.getElementById("no");
+  const yes = document.getElementById("yes");
 
-    function moveNoButton() {
-      const padding = 20;
-      const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-      const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+  const padding = 80;
+  const maxX = window.innerWidth - no.offsetWidth - padding;
+  const maxY = window.innerHeight - no.offsetHeight - padding;
 
-      const randomX = Math.random() * maxX;
-      const randomY = Math.random() * maxY;
+  let x, y;
+  do {
+    x = Math.random() * maxX;
+    y = Math.random() * maxY;
+  } while (
+    Math.abs(x - yes.getBoundingClientRect().left) < 120 &&
+    Math.abs(y - yes.getBoundingClientRect().top) < 120
+  );
 
-      noBtn.style.left = randomX + 'px';
-      noBtn.style.top = randomY + 'px';
+  no.style.left = x + "px";
+  no.style.top = y + "px";
 
-      teaseText.textContent = teases[Math.min(dodgeCount, teases.length - 1)];
-      dodgeCount++;
-    }
+  if (noCount === 6) {
+    alert("BRO JUST SAY YES ALREADY 😭🐶");
+  }
+});
 
-    noBtn.addEventListener('mouseenter', moveNoButton);
-    noBtn.addEventListener('click', moveNoButton);
+document.getElementById("yes").addEventListener("click", () => {
+  beep(900);
 
-    yesBtn.addEventListener('click', () => {
-      successMsg.style.display = 'block';
-      yesBtn.style.display = 'none';
-      noBtn.style.display = 'none';
-      teaseText.textContent = "";
-      launchConfetti();
-      flashScreen();
-    });
-      flashScreen();
-    });
-      flashScreen();
-    });
-      flashScreen();
-    });
-      flashScreen();
-    });
+  const msg = document.getElementById("message");
+  msg.style.display = "block";
+  msg.classList.add("shake", "explode");
 
-    // Create floating hearts
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.textContent = Math.random() > 0.5 ? '💖' : '💕';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.fontSize = (24 + Math.random() * 24) + 'px';
-      heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-      document.body.appendChild(heart);
+  const flash = document.getElementById("flash");
+  flash.style.opacity = 0.5;
+  setTimeout(() => flash.style.opacity = 0, 300);
+});
 
-      setTimeout(() => heart.remove(), 7000);
-    }
+// hearts
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = 14 + Math.random() * 26 + "px";
+  heart.style.color = ["#ff4d88", "#ff85a2", "#ff1f6b"][Math.floor(Math.random()*3)];
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 300);
+</script>
 
-    setInterval(createHeart, 450);
-
-    // Screen flash
-    function flashScreen() {
-      const flash = document.createElement('div');
-      flash.style.position = 'fixed';
-      flash.style.top = 0;
-      flash.style.left = 0;
-      flash.style.width = '100vw';
-      flash.style.height = '100vh';
-      flash.style.background = 'rgba(255, 182, 213, 0.4)';
-      flash.style.zIndex = 9998;
-      flash.style.pointerEvents = 'none';
-      document.body.appendChild(flash);
-
-      setTimeout(() => flash.remove(), 300);
-    }
-
-    // Confetti explosion
-    function launchConfetti() {
-      for (let i = 0; i < 60; i++) {
-        const confetti = document.createElement('div');
-        confetti.textContent = '🎉';
-        confetti.style.position = 'fixed';
-        confetti.style.left = '50vw';
-        confetti.style.top = '50vh';
-        confetti.style.fontSize = '20px';
-        confetti.style.pointerEvents = 'none';
-        confetti.style.transition = 'transform 1.2s ease-out, opacity 1.2s';
-        document.body.appendChild(confetti);
-
-        const angle = Math.random() * 2 * Math.PI;
-        const distance = 100 + Math.random() * 150;
-        const x = Math.cos(angle) * distance;
-        const y = Math.sin(angle) * distance;
-
-        setTimeout(() => {
-          confetti.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random()*360}deg)`;
-          confetti.style.opacity = '0';
-        }, 50);
-
-        setTimeout(() => confetti.remove(), 1400);
-      }
-    }
-  </script></body>
+</body>
 </html>
