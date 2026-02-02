@@ -10,9 +10,6 @@
     }body {
   margin: 0;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: linear-gradient(135deg, #ffd6e8, #ffeef5);
   overflow: hidden;
 }
@@ -114,19 +111,25 @@ button {
 
 .success-overlay {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 9997;
+  z-index: 9999;
 }
 
 .success {
-  font-size: 22px;
-  color: #ff4d88;
-  text-align: center;
-  animation: shake 0.5s infinite;
-}
+
+display: flex; align-items: center; justify-content: center; }
+
+.final-text { text-align: center; }
+
+.yay { font-size: 26px; color: #ff4d88; animation: shake 0.5s infinite; }
+
+.love { margin-top: 10px; font-size: 20px; color: #ff2f92; animation: pulseGlow 1.5s infinite; }
 
 .love-text {
   display: inline-block;
@@ -164,12 +167,15 @@ button {
 <button id="noBtn">No 🙈</button>
 
 <div class="success-overlay" id="successOverlay">
+
   <div class="success" id="successMsg">
-    YAYYYY BABYYY 💖🐾<br />
-    <span class="love-text">I LOVEE YOUU STUTIIII 💕</span>
+    <div class="final-text">
+      <div class="yay">YAYYYY BABYYY 💖🐾</div>
+      <div class="love">I LOVEE YOUU STUTIIII 💕</div>
+    </div>
   </div>
 </div>
-
+    </div>
   </div>  <script>
     const noBtn = document.getElementById('noBtn');
     const yesBtn = document.getElementById('yesBtn');
@@ -206,7 +212,7 @@ button {
 
     yesBtn.addEventListener('click', () => {
       document.getElementById('successOverlay').style.display = 'flex';
-      yesBtn.style.display = 'none';
+      document.querySelector('.card').style.display = 'none';
       noBtn.style.display = 'none';
       teaseText.textContent = "";
       launchConfetti();
@@ -273,4 +279,4 @@ button {
       }
     }
   </script></body>
-</html>
+</html> 
