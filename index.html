@@ -34,10 +34,17 @@ h1 {
   text-align: center;
 }
 
-#dog {
-  width: 170px;
-  border-radius: 24px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+/* 🐶 DOG EMOJI */
+#dog-emoji {
+  font-size: 120px;
+  margin-bottom: 10px;
+  animation: floaty 2s ease-in-out infinite;
+}
+
+@keyframes floaty {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
 }
 
 .buttons {
@@ -143,7 +150,9 @@ button {
 <body>
 
 <div id="flash"></div>
-<img id="dog" src="myphoto.jpg" alt="cute photo">
+
+<!-- 🐶 CUTE DOG EMOJI -->
+<div id="dog-emoji">🐶</div>
 
 <h1>Will you be my Valentine? 💕</h1>
 
