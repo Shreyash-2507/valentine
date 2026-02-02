@@ -112,17 +112,20 @@ button {
   z-index: 9999;
 }
 
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9997;
+}
+
 .success {
   font-size: 22px;
   color: #ff4d88;
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
   animation: shake 0.5s infinite;
-  z-index: 9997;
 }
 
 .love-text {
@@ -160,9 +163,11 @@ button {
 
 <button id="noBtn">No 🙈</button>
 
-<div class="success" id="successMsg">
-  YAYYYY BABYYY 💖🐾<br />
-  <span class="love-text">I LOVEE YOUU STUTIIII 💕</span>
+<div class="success-overlay" id="successOverlay">
+  <div class="success" id="successMsg">
+    YAYYYY BABYYY 💖🐾<br />
+    <span class="love-text">I LOVEE YOUU STUTIIII 💕</span>
+  </div>
 </div>
 
   </div>  <script>
@@ -200,11 +205,13 @@ button {
     noBtn.addEventListener('click', moveNoButton);
 
     yesBtn.addEventListener('click', () => {
-      successMsg.style.display = 'block';
+      document.getElementById('successOverlay').style.display = 'flex';
       yesBtn.style.display = 'none';
       noBtn.style.display = 'none';
       teaseText.textContent = "";
       launchConfetti();
+      flashScreen();
+    });
       flashScreen();
     });
 
